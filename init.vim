@@ -18,27 +18,18 @@ filetype on
 set fileformat=unix
 
 call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'shaunsingh/nord.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 "Theme
-colorscheme nord
-
-"For Airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#keymap#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_theme='distinguished'
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c"
-
+colorscheme 
+colorscheme tokyonight-moon
 
 "For Telescope
 nnoremap ,ff <cmd>Telescope find_files<cr>
@@ -56,6 +47,7 @@ nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 " lua
+
 lua << EOF
 require('telescope').setup {
   extensions = {
@@ -67,8 +59,9 @@ require('telescope').setup {
     }
   }
 }
-require('telescope').load_extension('fzf')
 
+require('lualine').setup()
+require('telescope').load_extension('fzf')
 require("toggleterm").setup()
 
 EOF
