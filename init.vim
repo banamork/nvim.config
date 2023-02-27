@@ -15,6 +15,7 @@ set relativenumber
 set nowrap
 syntax on
 filetype on
+filetype plugin on
 set fileformat=unix
 
 call plug#begin()
@@ -25,11 +26,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
 "Theme
-colorscheme 
-colorscheme tokyonight-moon
+colorscheme gruvbox-material
+"colorscheme tokyonight-moon
 
 "For Telescope
 nnoremap ,ff <cmd>Telescope find_files<cr>
